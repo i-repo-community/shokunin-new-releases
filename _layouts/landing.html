@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>職人.new — 現場で撮って、その場で報告書。</title>
+<style>
+  :root{
+    --ink:#141210; --paper:#f3efe6; --paper2:#ece7da;
+    --accent:#0aa45a; --accent-ink:#04140a;
+    --blue:#1f4fff;
+    --line:#141210;
+    --shadow:6px 6px 0 var(--ink);
+    --shadow-sm:4px 4px 0 var(--ink);
+    --sans:"Helvetica Neue",Helvetica,Arial,"Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(var(--paper2) 1px,transparent 1px),linear-gradient(90deg,var(--paper2) 1px,transparent 1px);
+    background-size:46px 46px; background-position:-1px -1px}
+  a{color:inherit; text-decoration:none}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .mono{font-family:var(--mono)}
+  .kick{font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    display:inline-block; border:2px solid var(--ink); padding:5px 10px; background:var(--paper)}
+
+  /* ---- nav ---- */
+  header.nav{position:sticky; top:0; z-index:30; background:var(--paper); border-bottom:3px solid var(--ink)}
+  .nav-in{display:flex; align-items:center; gap:18px; height:66px}
+  .brand{display:flex; align-items:center; gap:12px; font-weight:900; font-size:17px; letter-spacing:-.02em}
+  .logo{width:38px; height:38px; display:flex; align-items:center; justify-content:center; background:var(--accent); color:#fff;
+    font-weight:900; font-size:15px; border:2px solid var(--ink); box-shadow:var(--shadow-sm)}
+  .nav-sp{flex:1}
+  .nav .nlink{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.04em; padding:6px 4px; border-bottom:2px solid transparent}
+  .nav .nlink:hover{border-bottom-color:var(--accent)}
+  @media(max-width:720px){ .nav .nlink.hide-sm{display:none} }
+
+  /* ---- buttons ---- */
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 24px; font-weight:800; font-size:15px;
+    border:2px solid var(--ink); background:var(--paper); color:var(--ink); cursor:pointer;
+    box-shadow:var(--shadow); transition:transform .08s ease, box-shadow .08s ease}
+  .btn:hover{transform:translate(-2px,-2px); box-shadow:8px 8px 0 var(--ink)}
+  .btn:active{transform:translate(3px,3px); box-shadow:1px 1px 0 var(--ink)}
+  .btn-primary{background:var(--accent); color:#fff}
+  .btn-lg{padding:17px 30px; font-size:17px}
+
+  /* ---- hero ---- */
+  .hero{padding:64px 0 36px; border-bottom:3px solid var(--ink)}
+  .hero h1{font-size:clamp(38px,7.4vw,86px); line-height:1.12; margin:48px 0 0; font-weight:900; letter-spacing:-.035em}
+  .hero h1 mark{background:var(--accent); color:#fff; padding:.07em .14em;
+    box-decoration-break:clone; -webkit-box-decoration-break:clone}
+  .hero p.lead{font-size:clamp(16px,1.7vw,20px); max-width:620px; margin:26px 0 0; font-weight:500}
+  .hero-cta{display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-top:34px}
+  .marquee{margin-top:30px; border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); padding:10px 0;
+    font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.05em; overflow:hidden; white-space:nowrap}
+  .marquee span{display:inline-block}
+
+  /* ---- screenshot frame ---- */
+  .shot{border:2px solid var(--ink); background:var(--paper); box-shadow:var(--shadow); margin:0}
+  .shot-bar{display:flex; align-items:center; gap:10px; border-bottom:2px solid var(--ink); background:var(--ink); color:var(--paper);
+    font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.05em; padding:7px 12px}
+  .shot-bar .dot{width:9px;height:9px;border:2px solid var(--paper); display:inline-block}
+  .shot-bar .idx{margin-left:auto; color:var(--accent)}
+  .shot-body{aspect-ratio:16/10; display:grid; place-items:center; position:relative; background:
+      repeating-linear-gradient(45deg,transparent,transparent 11px,rgba(20,18,16,.045) 11px,rgba(20,18,16,.045) 12px)}
+  .shot-body::before{content:"［ SCREENSHOT ］"; font-family:var(--mono); font-size:12px; color:#9a9082; letter-spacing:.1em}
+  .shot-body img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
+  .shot-body.tall{aspect-ratio:9/16}
+  .shot.hero-shot{margin-top:50px}
+  .shot.hero-shot .shot-body{aspect-ratio:16/8.4}
+
+  /* ---- sections ---- */
+  section{padding:62px 0; border-bottom:3px solid var(--ink)}
+  .sec-head{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:34px; flex-wrap:wrap}
+  .sec-head h2{font-size:clamp(26px,4vw,44px); margin:14px 0 0; font-weight:900; letter-spacing:-.03em; line-height:1}
+  .sec-head .sd{max-width:420px; font-size:14px; color:#5c5447; font-weight:500}
+
+  /* ---- value 3up ---- */
+  .cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+  @media(max-width:860px){ .cards3{grid-template-columns:1fr} }
+  .vcard{border:2px solid var(--ink); background:var(--paper); box-shadow:var(--shadow); padding:26px 24px}
+  .vcard .vn{font-family:var(--mono); font-weight:700; font-size:13px; letter-spacing:.1em; color:var(--accent)}
+  .vcard h3{margin:14px 0 8px; font-size:21px; font-weight:900; letter-spacing:-.02em; line-height:1.15}
+  .vcard p{margin:0; font-size:14.5px; color:#4b443a; font-weight:500}
+
+  /* ---- screen tour ---- */
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
+  @media(max-width:940px){ .grid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:580px){ .grid{grid-template-columns:1fr} }
+  .tile h4{margin:14px 0 4px; font-size:16px; font-weight:900; letter-spacing:-.01em}
+  .tile p{margin:0; font-size:13px; color:#5c5447; font-weight:500}
+  .tile.star .shot{box-shadow:6px 6px 0 var(--accent)}
+
+  /* ---- docs ---- */
+  .doclink{display:flex; align-items:center; justify-content:space-between; gap:16px; border:2px solid var(--ink);
+    background:var(--paper); box-shadow:var(--shadow-sm); padding:18px 20px; margin-bottom:16px; transition:transform .08s, box-shadow .08s}
+  .doclink:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink)}
+  .doclink b{font-size:16px; font-weight:900} .doclink span{display:block; font-size:13px; color:#5c5447; font-weight:500; margin-top:2px}
+  .doclink .go{font-family:var(--mono); font-weight:800; color:var(--accent)}
+
+  footer{padding:30px 0; font-family:var(--mono); font-size:12.5px; color:#5c5447}
+  footer b{color:var(--ink)}
+  .no-sec{border-bottom:none}
+</style>
+</head><body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="logo">職</span> 職人.new</a>
+    <span class="nav-sp"></span>
+    <a class="nlink" href="#features">FEATURES</a>
+    <a class="nlink hide-sm" href="#screens">SCREENS</a>
+    <a class="nlink" href="ja/manual.html">DOCS</a>
+    <a class="nlink" href="en/">EN</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="kick">Craftsman's Assistant / SaaS</span>
+      <h1>現場で撮って、<br><mark>その場で報告書。</mark></h1>
+      <p class="lead">LINE で写真を送るだけ。AI アシスタント<b>「あずさ」</b>が写真報告書づくりをサポート。事務所のパソコンに戻る時間は、もういりません。</p>
+      <div class="hero-cta">
+        <!-- TODO: CTA先（LINE友だち追加リンク / 問い合わせ先）確定後に差し替え -->
+        <a class="btn btn-primary btn-lg" href="ja/getting-started.html">はじめる</a>
+        <a class="btn btn-lg" href="ja/manual.html">使い方を見る</a>
+      </div>
+      <div class="marquee"><span id="mq">写真報告書&nbsp;&nbsp;/&nbsp;&nbsp;あずさアドバイス&nbsp;&nbsp;/&nbsp;&nbsp;インタビューモード&nbsp;&nbsp;/&nbsp;&nbsp;業務フロー&nbsp;&nbsp;/&nbsp;&nbsp;報告書リスト&nbsp;&nbsp;/&nbsp;&nbsp;マップ&nbsp;&nbsp;/&nbsp;&nbsp;PDF&nbsp;ダウンロード&nbsp;&nbsp;/&nbsp;&nbsp;工事手配&nbsp;&nbsp;/&nbsp;&nbsp;QR&nbsp;ポスター&nbsp;&nbsp;/&nbsp;&nbsp;</span></div>
+      <figure class="shot hero-shot">
+        <div class="shot-bar"><span class="dot"></span> 職人.new <span class="idx">HERO</span></div>
+        <div class="shot-body"><img src="assets/img/hero.png" alt="職人.new" onerror="this.style.display='none'"></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- VALUE -->
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="kick">What it does</span><h2>撮る・話す・任せる。</h2></div>
+        <p class="sd">現場の報告業務に必要なことを、LINE とブラウザで完結。</p>
+      </div>
+      <div class="cards3">
+        <div class="vcard"><div class="vn">01 — REPORT</div><h3>写真を送るだけで<br>報告書ができる</h3>
+          <p>現場で撮った写真を LINE で送ると、工事写真報告書がその場で完成。報告書リストから確認・編集・PDF ダウンロードまで。</p></div>
+        <div class="vcard"><div class="vn">02 — AZUSA AI</div><h3>AI アシスタント<br>「あずさ」が隣に</h3>
+          <p>あずさアドバイスが報告書づくりを手伝い、インタビューモードでは会話の聞き取りから報告書を仕上げます。</p></div>
+        <div class="vcard"><div class="vn">03 — MANAGE</div><h3>現場監督は<br>ブラウザで管理</h3>
+          <p>管理画面から報告書の確認、工事手配、業務フローの定義まで。現場と事務所がリアルタイムにつながります。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENS -->
+  <section id="screens">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="kick">Screen tour</span><h2>職人は LINE、監督はブラウザ。</h2></div>
+        <p class="sd">スクリーンショットはデモ環境のものを順次掲載予定です。</p>
+      </div>
+      <div class="grid">
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> 報告書リスト <span class="idx">LINE</span></div><div class="shot-body"><img src="assets/img/screen-report-list.png" alt="報告書リスト" onerror="this.style.display='none'"></div></div><h4>報告書リスト</h4><p>作成した報告書を LINE の中で一覧・確認。</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> 写真報告書 <span class="idx">LINE</span></div><div class="shot-body"><img src="assets/img/screen-photo-report.png" alt="写真報告書" onerror="this.style.display='none'"></div></div><h4>写真報告書</h4><p>写真を送るだけで報告書を作成・更新。</p></figure>
+        <figure class="tile star"><div class="shot"><div class="shot-bar"><span class="dot"></span> あずさアドバイス <span class="idx">★ AI</span></div><div class="shot-body"><img src="assets/img/screen-azusa.png" alt="あずさアドバイス" onerror="this.style.display='none'"></div></div><h4>あずさアドバイス</h4><p>AI アシスタントが報告書づくりをサポート。</p></figure>
+        <figure class="tile star"><div class="shot"><div class="shot-bar"><span class="dot"></span> インタビューモード <span class="idx">★ AI</span></div><div class="shot-body"><img src="assets/img/screen-interview.png" alt="インタビューモード" onerror="this.style.display='none'"></div></div><h4>インタビューモード</h4><p>あずさの聞き取りに答えるだけで報告書が仕上がる。</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> 業務フロー <span class="idx">LINE</span></div><div class="shot-body"><img src="assets/img/screen-workflow.png" alt="業務フロー" onerror="this.style.display='none'"></div></div><h4>業務フロー</h4><p>決められた手順に沿って、迷わず報告。</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> マップ <span class="idx">LINE</span></div><div class="shot-body"><img src="assets/img/screen-map.png" alt="マップ" onerror="this.style.display='none'"></div></div><h4>マップ</h4><p>報告書を地図から探す。</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> ダッシュボード <span class="idx">管理画面</span></div><div class="shot-body"><img src="assets/img/screen-dashboard.png" alt="ダッシュボード" onerror="this.style.display='none'"></div></div><h4>ダッシュボード</h4><p>現場監督は報告状況をひと目で把握。</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> 工事手配 <span class="idx">管理画面</span></div><div class="shot-body"><img src="assets/img/screen-dispatch.png" alt="工事手配" onerror="this.style.display='none'"></div></div><h4>工事手配</h4><p>工事の手配・予定を管理し、職人へ届ける。</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> 業務フロー定義 <span class="idx">管理画面</span></div><div class="shot-body"><img src="assets/img/screen-workflow-def.png" alt="業務フロー定義" onerror="this.style.display='none'"></div></div><h4>業務フロー定義</h4><p>現場の手順をフォームとして定義。</p></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCS -->
+  <section class="no-sec">
+    <div class="wrap" style="max-width:760px">
+      <div>
+        <span class="kick">Docs</span>
+        <h2 style="font-size:clamp(24px,3vw,34px); margin:14px 0 18px; font-weight:900; letter-spacing:-.03em">もっと詳しく</h2>
+        <a class="doclink" href="ja/getting-started.html"><span><b>はじめに</b><span>LINE 公式アカウントの友だち追加から利用開始まで</span></span><span class="go">→</span></a>
+        <a class="doclink" href="ja/manual.html"><span><b>ユーザーマニュアル</b><span>職人（LINE）と現場監督（管理画面）の使い方</span></span><span class="go">→</span></a>
+        <a class="doclink" href="ja/whats-new.html"><span><b>更新情報</b><span>新機能・改善・修正のお知らせ</span></span><span class="go">→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <b>職人.new (Shokunin.new)</b> — 現場で撮って、その場で報告書。<br>
+  © CIMTOPS Corporation · 公開ドキュメントのみ掲載 · <a href="en/" style="border-bottom:2px solid var(--ink)">English</a>
+</div></footer>
+
+<script>
+(function(){
+  var mq=document.getElementById('mq'); if(mq) mq.parentElement.insertAdjacentHTML('beforeend', mq.outerHTML.replace('id="mq"',''));
+})();
+</script>
+</body></html>

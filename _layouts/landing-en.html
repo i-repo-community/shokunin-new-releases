@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shokunin.new — Shoot on-site. Report on the spot.</title>
+<style>
+  :root{
+    --ink:#141210; --paper:#f3efe6; --paper2:#ece7da;
+    --accent:#0aa45a; --accent-ink:#04140a;
+    --blue:#1f4fff;
+    --line:#141210;
+    --shadow:6px 6px 0 var(--ink);
+    --shadow-sm:4px 4px 0 var(--ink);
+    --sans:"Helvetica Neue",Helvetica,Arial,"Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+    background-image:linear-gradient(var(--paper2) 1px,transparent 1px),linear-gradient(90deg,var(--paper2) 1px,transparent 1px);
+    background-size:46px 46px; background-position:-1px -1px}
+  a{color:inherit; text-decoration:none}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .mono{font-family:var(--mono)}
+  .kick{font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    display:inline-block; border:2px solid var(--ink); padding:5px 10px; background:var(--paper)}
+
+  /* ---- nav ---- */
+  header.nav{position:sticky; top:0; z-index:30; background:var(--paper); border-bottom:3px solid var(--ink)}
+  .nav-in{display:flex; align-items:center; gap:18px; height:66px}
+  .brand{display:flex; align-items:center; gap:12px; font-weight:900; font-size:17px; letter-spacing:-.02em}
+  .logo{width:38px; height:38px; display:flex; align-items:center; justify-content:center; background:var(--accent); color:#fff;
+    font-weight:900; font-size:15px; border:2px solid var(--ink); box-shadow:var(--shadow-sm)}
+  .nav-sp{flex:1}
+  .nav .nlink{font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.04em; padding:6px 4px; border-bottom:2px solid transparent}
+  .nav .nlink:hover{border-bottom-color:var(--accent)}
+  @media(max-width:720px){ .nav .nlink.hide-sm{display:none} }
+
+  /* ---- buttons ---- */
+  .btn{display:inline-flex; align-items:center; gap:10px; padding:14px 24px; font-weight:800; font-size:15px;
+    border:2px solid var(--ink); background:var(--paper); color:var(--ink); cursor:pointer;
+    box-shadow:var(--shadow); transition:transform .08s ease, box-shadow .08s ease}
+  .btn:hover{transform:translate(-2px,-2px); box-shadow:8px 8px 0 var(--ink)}
+  .btn:active{transform:translate(3px,3px); box-shadow:1px 1px 0 var(--ink)}
+  .btn-primary{background:var(--accent); color:#fff}
+  .btn-lg{padding:17px 30px; font-size:17px}
+
+  /* ---- hero ---- */
+  .hero{padding:64px 0 36px; border-bottom:3px solid var(--ink)}
+  .hero h1{font-size:clamp(38px,7vw,80px); line-height:1.12; margin:48px 0 0; font-weight:900; letter-spacing:-.035em}
+  .hero h1 mark{background:var(--accent); color:#fff; padding:.07em .14em;
+    box-decoration-break:clone; -webkit-box-decoration-break:clone}
+  .hero p.lead{font-size:clamp(16px,1.7vw,20px); max-width:620px; margin:26px 0 0; font-weight:500}
+  .hero-cta{display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin-top:34px}
+  .marquee{margin-top:30px; border-top:2px solid var(--ink); border-bottom:2px solid var(--ink); padding:10px 0;
+    font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.05em; overflow:hidden; white-space:nowrap}
+  .marquee span{display:inline-block}
+
+  /* ---- screenshot frame ---- */
+  .shot{border:2px solid var(--ink); background:var(--paper); box-shadow:var(--shadow); margin:0}
+  .shot-bar{display:flex; align-items:center; gap:10px; border-bottom:2px solid var(--ink); background:var(--ink); color:var(--paper);
+    font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.05em; padding:7px 12px}
+  .shot-bar .dot{width:9px;height:9px;border:2px solid var(--paper); display:inline-block}
+  .shot-bar .idx{margin-left:auto; color:var(--accent)}
+  .shot-body{aspect-ratio:16/10; display:grid; place-items:center; position:relative; background:
+      repeating-linear-gradient(45deg,transparent,transparent 11px,rgba(20,18,16,.045) 11px,rgba(20,18,16,.045) 12px)}
+  .shot-body::before{content:"[ SCREENSHOT ]"; font-family:var(--mono); font-size:12px; color:#9a9082; letter-spacing:.1em}
+  .shot-body img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
+  .shot.hero-shot{margin-top:50px}
+  .shot.hero-shot .shot-body{aspect-ratio:16/8.4}
+
+  /* ---- sections ---- */
+  section{padding:62px 0; border-bottom:3px solid var(--ink)}
+  .sec-head{display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin-bottom:34px; flex-wrap:wrap}
+  .sec-head h2{font-size:clamp(26px,4vw,44px); margin:14px 0 0; font-weight:900; letter-spacing:-.03em; line-height:1}
+  .sec-head .sd{max-width:420px; font-size:14px; color:#5c5447; font-weight:500}
+
+  /* ---- value 3up ---- */
+  .cards3{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+  @media(max-width:860px){ .cards3{grid-template-columns:1fr} }
+  .vcard{border:2px solid var(--ink); background:var(--paper); box-shadow:var(--shadow); padding:26px 24px}
+  .vcard .vn{font-family:var(--mono); font-weight:700; font-size:13px; letter-spacing:.1em; color:var(--accent)}
+  .vcard h3{margin:14px 0 8px; font-size:21px; font-weight:900; letter-spacing:-.02em; line-height:1.15}
+  .vcard p{margin:0; font-size:14.5px; color:#4b443a; font-weight:500}
+
+  /* ---- screen tour ---- */
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
+  @media(max-width:940px){ .grid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:580px){ .grid{grid-template-columns:1fr} }
+  .tile h4{margin:14px 0 4px; font-size:16px; font-weight:900; letter-spacing:-.01em}
+  .tile p{margin:0; font-size:13px; color:#5c5447; font-weight:500}
+  .tile.star .shot{box-shadow:6px 6px 0 var(--accent)}
+
+  /* ---- docs ---- */
+  .doclink{display:flex; align-items:center; justify-content:space-between; gap:16px; border:2px solid var(--ink);
+    background:var(--paper); box-shadow:var(--shadow-sm); padding:18px 20px; margin-bottom:16px; transition:transform .08s, box-shadow .08s}
+  .doclink:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--ink)}
+  .doclink b{font-size:16px; font-weight:900} .doclink span{display:block; font-size:13px; color:#5c5447; font-weight:500; margin-top:2px}
+  .doclink .go{font-family:var(--mono); font-weight:800; color:var(--accent)}
+
+  footer{padding:30px 0; font-family:var(--mono); font-size:12.5px; color:#5c5447}
+  footer b{color:var(--ink)}
+  .no-sec{border-bottom:none}
+</style>
+</head><body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="logo">職</span> Shokunin.new</a>
+    <span class="nav-sp"></span>
+    <a class="nlink" href="#features">FEATURES</a>
+    <a class="nlink hide-sm" href="#screens">SCREENS</a>
+    <a class="nlink" href="../en/manual.html">DOCS</a>
+    <a class="nlink" href="../">日本語</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="kick">Craftsman's Assistant / SaaS</span>
+      <h1>Shoot on-site.<br><mark>Report on the spot.</mark></h1>
+      <p class="lead">Just send photos over LINE. <b>Azusa</b>, your AI assistant, helps turn them into a finished photo report. No more going back to the office PC.</p>
+      <div class="hero-cta">
+        <!-- TODO: replace with final CTA (LINE friend-add link / contact) once decided -->
+        <a class="btn btn-primary btn-lg" href="getting-started.html">Get started</a>
+        <a class="btn btn-lg" href="manual.html">See how it works</a>
+      </div>
+      <div class="marquee"><span id="mq">PHOTO&nbsp;REPORTS&nbsp;&nbsp;/&nbsp;&nbsp;AZUSA&nbsp;ADVICE&nbsp;&nbsp;/&nbsp;&nbsp;INTERVIEW&nbsp;MODE&nbsp;&nbsp;/&nbsp;&nbsp;WORKFLOWS&nbsp;&nbsp;/&nbsp;&nbsp;REPORT&nbsp;LIST&nbsp;&nbsp;/&nbsp;&nbsp;MAP&nbsp;&nbsp;/&nbsp;&nbsp;PDF&nbsp;DOWNLOAD&nbsp;&nbsp;/&nbsp;&nbsp;DISPATCH&nbsp;&nbsp;/&nbsp;&nbsp;QR&nbsp;POSTER&nbsp;&nbsp;/&nbsp;&nbsp;</span></div>
+      <figure class="shot hero-shot">
+        <div class="shot-bar"><span class="dot"></span> Shokunin.new <span class="idx">HERO</span></div>
+        <div class="shot-body"><img src="../assets/img/hero.png" alt="Shokunin.new" onerror="this.style.display='none'"></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- VALUE -->
+  <section id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="kick">What it does</span><h2>Shoot. Talk. Done.</h2></div>
+        <p class="sd">Everything a field report needs, completed in LINE and the browser.</p>
+      </div>
+      <div class="cards3">
+        <div class="vcard"><div class="vn">01 — REPORT</div><h3>Send photos,<br>get a report</h3>
+          <p>Send photos from the site over LINE and a construction photo report is created on the spot. View, edit, and download the PDF from the Report List.</p></div>
+        <div class="vcard"><div class="vn">02 — AZUSA AI</div><h3>Azusa, the AI assistant<br>at your side</h3>
+          <p>Azusa advice helps you build reports, and in interview mode Azusa asks the questions and finishes the report from your answers.</p></div>
+        <div class="vcard"><div class="vn">03 — MANAGE</div><h3>Supervisors manage<br>from the browser</h3>
+          <p>Review reports, manage dispatch, and define workflows from the admin screen. The site and the office stay in sync, in real time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENS -->
+  <section id="screens">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="kick">Screen tour</span><h2>Craftsmen use LINE. Supervisors use the browser.</h2></div>
+        <p class="sd">Screenshots from a demo environment will be added here.</p>
+      </div>
+      <div class="grid">
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Report List <span class="idx">LINE</span></div><div class="shot-body"><img src="../assets/img/screen-report-list.png" alt="Report List" onerror="this.style.display='none'"></div></div><h4>Report List</h4><p>Browse and check your reports right inside LINE.</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Photo Report <span class="idx">LINE</span></div><div class="shot-body"><img src="../assets/img/screen-photo-report.png" alt="Photo Report" onerror="this.style.display='none'"></div></div><h4>Photo Report</h4><p>Create and update reports just by sending photos.</p></figure>
+        <figure class="tile star"><div class="shot"><div class="shot-bar"><span class="dot"></span> Azusa Advice <span class="idx">★ AI</span></div><div class="shot-body"><img src="../assets/img/screen-azusa.png" alt="Azusa Advice" onerror="this.style.display='none'"></div></div><h4>Azusa Advice</h4><p>The AI assistant supports your report writing.</p></figure>
+        <figure class="tile star"><div class="shot"><div class="shot-bar"><span class="dot"></span> Interview Mode <span class="idx">★ AI</span></div><div class="shot-body"><img src="../assets/img/screen-interview.png" alt="Interview Mode" onerror="this.style.display='none'"></div></div><h4>Interview Mode</h4><p>Answer Azusa's questions and the report writes itself.</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Workflows <span class="idx">LINE</span></div><div class="shot-body"><img src="../assets/img/screen-workflow.png" alt="Workflows" onerror="this.style.display='none'"></div></div><h4>Workflows</h4><p>Report step by step, following the defined procedure.</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Map <span class="idx">LINE</span></div><div class="shot-body"><img src="../assets/img/screen-map.png" alt="Map" onerror="this.style.display='none'"></div></div><h4>Map</h4><p>Find reports on a map.</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Dashboard <span class="idx">ADMIN</span></div><div class="shot-body"><img src="../assets/img/screen-dashboard.png" alt="Dashboard" onerror="this.style.display='none'"></div></div><h4>Dashboard</h4><p>Supervisors see reporting status at a glance.</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Dispatch <span class="idx">ADMIN</span></div><div class="shot-body"><img src="../assets/img/screen-dispatch.png" alt="Dispatch" onerror="this.style.display='none'"></div></div><h4>Dispatch Management</h4><p>Plan and manage construction dispatch, delivered to craftsmen.</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Workflow Definitions <span class="idx">ADMIN</span></div><div class="shot-body"><img src="../assets/img/screen-workflow-def.png" alt="Workflow Definitions" onerror="this.style.display='none'"></div></div><h4>Workflow Definitions</h4><p>Define your site procedures as forms.</p></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCS -->
+  <section class="no-sec">
+    <div class="wrap" style="max-width:760px">
+      <div>
+        <span class="kick">Docs</span>
+        <h2 style="font-size:clamp(24px,3vw,34px); margin:14px 0 18px; font-weight:900; letter-spacing:-.03em">Learn more</h2>
+        <a class="doclink" href="getting-started.html"><span><b>Getting Started</b><span>From adding the LINE official account to your first report</span></span><span class="go">→</span></a>
+        <a class="doclink" href="manual.html"><span><b>User Manual</b><span>For craftsmen (LINE) and supervisors (admin screen)</span></span><span class="go">→</span></a>
+        <a class="doclink" href="whats-new.html"><span><b>What's New</b><span>New features, improvements, and fixes</span></span><span class="go">→</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <b>Shokunin.new</b> — Shoot on-site. Report on the spot.<br>
+  © CIMTOPS Corporation · Public documentation only · <a href="../" style="border-bottom:2px solid var(--ink)">日本語</a>
+</div></footer>
+
+<script>
+(function(){
+  var mq=document.getElementById('mq'); if(mq) mq.parentElement.insertAdjacentHTML('beforeend', mq.outerHTML.replace('id="mq"',''));
+})();
+</script>
+</body></html>

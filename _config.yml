@@ -1,0 +1,20 @@
+# GitHub Pages（Jekyll）設定。just-the-docs テーマで、ランディングページと
+# ユーザーマニュアル（日英）を公開する。GEMBA OS 公開サイトと同じ構成。
+title: 職人.new (Shokunin.new)
+description: 現場で撮って、その場で報告書。LINE で使える職人のためのアシスタント / Photo reports on-site via LINE, with an AI assistant.
+remote_theme: just-the-docs/just-the-docs
+
+# 検索を有効化
+search_enabled: true
+
+# Jekyll が無視するもの
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+
+# 右上リンク
+aux_links:
+  "ホーム / Home":
+    - "/"
