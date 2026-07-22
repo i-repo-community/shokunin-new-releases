@@ -72,12 +72,13 @@
     font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.05em; padding:7px 12px}
   .shot-bar .dot{width:9px;height:9px;border:2px solid var(--paper); display:inline-block}
   .shot-bar .idx{margin-left:auto; color:var(--accent)}
-  .shot-body{aspect-ratio:16/10; display:grid; place-items:center; position:relative; background:
+  .shot-body{aspect-ratio:16/9; display:grid; place-items:center; position:relative; background:
       repeating-linear-gradient(45deg,transparent,transparent 11px,rgba(20,18,16,.045) 11px,rgba(20,18,16,.045) 12px)}
   .shot-body::before{content:"[ SCREENSHOT ]"; font-family:var(--mono); font-size:12px; color:#9a9082; letter-spacing:.1em}
-  .shot-body img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block}
+  .shot-body img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:left top; display:block}
   .shot.hero-shot{margin-top:50px}
-  .shot.hero-shot .shot-body{aspect-ratio:16/8.4}
+  .shot.hero-shot .shot-body{aspect-ratio:16/8.4; background:#fff}
+  .shot.hero-shot .shot-body img{object-fit:contain; object-position:center}
 
   /* ---- sections ---- */
   section{padding:62px 0; border-bottom:3px solid var(--ink)}
@@ -111,6 +112,14 @@
   footer{padding:30px 0; font-family:var(--mono); font-size:12.5px; color:#5c5447}
   footer b{color:var(--ink)}
   .no-sec{border-bottom:none}
+
+  /* ---- lightbox (screenshot enlargement) ---- */
+  .shot-body img{cursor:zoom-in}
+  .lb{position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:4vh 4vw; background:rgba(20,18,16,.85); cursor:zoom-out}
+  .lb.open{display:flex}
+  .lb img{max-width:100%; max-height:86vh; border:3px solid var(--ink); background:var(--paper); box-shadow:10px 10px 0 rgba(0,0,0,.4)}
+  .lb figcaption{position:absolute; left:50%; transform:translateX(-50%); bottom:3vh; background:var(--paper); border:2px solid var(--ink); box-shadow:var(--shadow-sm); font-family:var(--mono); font-size:13px; font-weight:700; padding:6px 14px; max-width:80vw; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .lb .lb-close{position:absolute; top:18px; right:22px; font:800 13px var(--mono); color:var(--paper); letter-spacing:.08em}
 </style>
 </head><body>
 
@@ -140,7 +149,7 @@
       <div class="marquee"><span id="mq">PHOTO&nbsp;REPORTS&nbsp;&nbsp;/&nbsp;&nbsp;AZUSA&nbsp;ADVICE&nbsp;&nbsp;/&nbsp;&nbsp;INTERVIEW&nbsp;MODE&nbsp;&nbsp;/&nbsp;&nbsp;WORKFLOWS&nbsp;&nbsp;/&nbsp;&nbsp;REPORT&nbsp;LIST&nbsp;&nbsp;/&nbsp;&nbsp;MAP&nbsp;&nbsp;/&nbsp;&nbsp;PDF&nbsp;DOWNLOAD&nbsp;&nbsp;/&nbsp;&nbsp;DISPATCH&nbsp;&nbsp;/&nbsp;&nbsp;QR&nbsp;POSTER&nbsp;&nbsp;/&nbsp;&nbsp;</span></div>
       <figure class="shot hero-shot">
         <div class="shot-bar"><span class="dot"></span> Shokunin.new <span class="idx">HERO</span></div>
-        <div class="shot-body"><img src="../assets/img/hero.png" alt="Shokunin.new" onerror="this.style.display='none'"></div>
+        <div class="shot-body"><img src="../assets/img/hero-en.svg" alt="Shokunin.new" onerror="this.style.display='none'"></div>
       </figure>
     </div>
   </section>
@@ -177,9 +186,9 @@
         <figure class="tile star"><div class="shot"><div class="shot-bar"><span class="dot"></span> Interview Mode <span class="idx">★ AI</span></div><div class="shot-body"><img src="../assets/img/screen-interview.png" alt="Interview Mode" onerror="this.style.display='none'"></div></div><h4>Interview Mode</h4><p>Answer Azusa's questions and the report writes itself.</p></figure>
         <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Workflows <span class="idx">LINE</span></div><div class="shot-body"><img src="../assets/img/screen-workflow.png" alt="Workflows" onerror="this.style.display='none'"></div></div><h4>Workflows</h4><p>Report step by step, following the defined procedure.</p></figure>
         <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Map <span class="idx">LINE</span></div><div class="shot-body"><img src="../assets/img/screen-map.png" alt="Map" onerror="this.style.display='none'"></div></div><h4>Map</h4><p>Find reports on a map.</p></figure>
-        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Dashboard <span class="idx">ADMIN</span></div><div class="shot-body"><img src="../assets/img/screen-dashboard.png" alt="Dashboard" onerror="this.style.display='none'"></div></div><h4>Dashboard</h4><p>Supervisors see reporting status at a glance.</p></figure>
-        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Dispatch <span class="idx">ADMIN</span></div><div class="shot-body"><img src="../assets/img/screen-dispatch.png" alt="Dispatch" onerror="this.style.display='none'"></div></div><h4>Dispatch Management</h4><p>Plan and manage construction dispatch, delivered to craftsmen.</p></figure>
-        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Workflow Definitions <span class="idx">ADMIN</span></div><div class="shot-body"><img src="../assets/img/screen-workflow-def.png" alt="Workflow Definitions" onerror="this.style.display='none'"></div></div><h4>Workflow Definitions</h4><p>Define your site procedures as forms.</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Dashboard <span class="idx">ADMIN</span></div><div class="shot-body"><img src="../assets/img/en/screen-dashboard.png" alt="Dashboard" onerror="this.style.display='none'"></div></div><h4>Dashboard</h4><p>Supervisors see reporting status at a glance.</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Dispatch <span class="idx">ADMIN</span></div><div class="shot-body"><img src="../assets/img/en/screen-dispatch.png" alt="Dispatch" onerror="this.style.display='none'"></div></div><h4>Dispatch Management</h4><p>Plan and manage construction dispatch, delivered to craftsmen.</p></figure>
+        <figure class="tile"><div class="shot"><div class="shot-bar"><span class="dot"></span> Workflow Definitions <span class="idx">ADMIN</span></div><div class="shot-body"><img src="../assets/img/en/screen-workflow-def.png" alt="Workflow Definitions" onerror="this.style.display='none'"></div></div><h4>Workflow Definitions</h4><p>Define your site procedures as forms.</p></figure>
       </div>
     </div>
   </section>
@@ -203,9 +212,21 @@
   © CIMTOPS Corporation · Public documentation only · <a href="../" style="border-bottom:2px solid var(--ink)">日本語</a>
 </div></footer>
 
+<figure class="lb" id="lb"><img id="lbImg" src="" alt=""><figcaption id="lbCap"></figcaption><span class="lb-close">✕ CLOSE (ESC)</span></figure>
+
 <script>
 (function(){
   var mq=document.getElementById('mq'); if(mq) mq.parentElement.insertAdjacentHTML('beforeend', mq.outerHTML.replace('id="mq"',''));
+  var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'), lbCap=document.getElementById('lbCap');
+  function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+  document.querySelectorAll('.shot-body img').forEach(function(img){
+    img.addEventListener('click', function(){
+      if(!img.src || img.style.display==='none') return;
+      lbImg.src=img.src; lbCap.textContent=img.alt||''; lb.classList.add('open'); document.body.style.overflow='hidden';
+    });
+  });
+  lb.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
 })();
 </script>
 </body></html>
