@@ -1,0 +1,5 @@
+{%- comment -%}
+  検索ボックスのプレースホルダーを言語別に切り替える（テーマの上書きフック）。
+  Language-aware search placeholder (official theme override hook).
+{%- endcomment -%}
+{%- if page.url contains "/en/" -%}Search {{ site.title }}{%- else -%}{{ site.title }} を検索{%- endif -%}
