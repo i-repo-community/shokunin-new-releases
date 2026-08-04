@@ -25,6 +25,15 @@ The "Steps" button at the top of the form opens a list of all steps.
 - Steps on a branch arm you haven't selected are grayed out; they become available once that branch is selected.
 - On the Review screen, tapping an item also jumps directly to that step.
 
+## Kinds of fields you can fill
+
+Beyond photos and text, forms can include several other kinds of fields (which ones appear depends on what your supervisor defined).
+
+- **Toggle select (トグル選択)**: pick one option from round buttons. On optional fields, tapping the selected option again clears your answer.
+- **Toggle total (トグル集計)**: automatically shows the total score of your toggle selections.
+- **Time calculation (時刻計算)**: automatically calculates the difference between the times you enter (such as a duration).
+- **Free draw / handwriting (自由描画)**: draw freehand with a pen. You can draw, erase, undo, and clear all — and reopen a saved report to keep editing your drawing.
+
 ## Good to know
 
 - The steps and fields are defined by your supervisor in the admin screen (Workflow Definitions), so they differ per site and per job.
