@@ -18,6 +18,7 @@ News about Shokunin.new features, improvements, and fixes.
   - **Toggle total (トグル集計)**: automatically shows the total score of your toggle selections.
   - **Time calculation (時刻計算)**: automatically calculates the difference between time fields (such as a duration).
 - **Free draw / handwriting (自由描画)**: a new field you can draw on freehand with a pen. Draw, erase, undo, and clear all; you can also reopen a saved report and keep editing your drawing.
+- **Import and sync report definitions from i-Reporter** (for customers who have their own i-Reporter; not shown if you do not have an i-Reporter account): the [Workflow Definitions](admin-workflow-definitions.html) screen can now list the report definitions on your i-Reporter server and import them directly. If a definition you already use is updated on the i-Reporter side, it is marked "Update available" and you can pull the latest version in one tap. Exporting XML files and uploading them by hand is no longer necessary — though manual upload still works as before. Note that workflows you uploaded by hand previously start showing "Update available" only after you have run Sync definitions once.
 
 ### Improvements
 
