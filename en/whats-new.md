@@ -25,6 +25,7 @@ News about Shokunin.new features, improvements, and fixes.
 
 ### Fixes
 
+- Fixed unselectable reports appearing in the "Azusa Advice" list and in the list shown when adding photos to an existing report. Both lists now show photo reports only. To add photos to a workflow report, use the "Add photos" button in the Report List.
 - Amount fields now show the yen mark "¥" correctly.
 - Choice labels that contain a comma (such as "5,700円") now display correctly.
 - Tapping a choice now highlights only the option you tapped (fixed a case where similar options were highlighted together).

@@ -37,6 +37,8 @@ There are two ways.
 
 Send photos and choose **update**; the Report List appears. Pick the report to update and the photos are **added** to it.
 
+This list shows **photo reports only**. To add photos to a [Workflow](screen-workflow.html) report, open "Report List" from the rich menu and use that report's "Add photos" button instead.
+
 ### Editing from the Report List
 
 Open "Report List" from the rich menu. Each report offers these actions:
