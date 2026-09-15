@@ -9,6 +9,24 @@ nav_order: 11
 
 News about Shokunin.new features, improvements, and fixes.
 
+## 2026-09
+
+### New features
+
+- Added **OpenAPI** under **System settings** in the admin sidebar. You can now check the specification of the API used for external system integrations directly from the admin screen. It appears only when you are signed in with an administrator account, and opens in a new tab.
+
+### Improvements
+
+- The list of access keys for external system integrations now **hides revoked and expired keys**. Only the keys you can currently use are shown, and a checkbox reveals the hidden ones. The keys themselves are never deleted, so the record of who created past reports with them is preserved.
+
+### Fixes
+
+- Fixed a problem where PDF generation could fail when several reports were created at almost the same time.
+- Fixed a problem where the screen could keep waiting if i-Reporter stopped responding. It now stops after a set time and reports an error.
+- Fixed a problem where edits to a report could be lost. If someone edited a report's comments or details while its PDF was being regenerated, that edit was sometimes not saved.
+- Fixed a problem where a failed PDF generation also made the previous PDF unavailable. If a new PDF cannot be created, the existing one now stays in place.
+- The update date printed on a report now reflects when the report's contents were last changed. Previously, regenerating the PDF without changing anything could move that date forward.
+
 ## 2026-08
 
 ### New
@@ -23,6 +41,7 @@ News about Shokunin.new features, improvements, and fixes.
 ### Improvements
 
 - Tapping "Next" now scrolls to the first empty required field for every kind of field (including toggle select and multi-select), not just text fields.
+- The operation log can now be filtered by access-key events for external integrations ("API credential issued", "API credential rotated", "API credential revoked"). These entries appear only for customers using an external integration.
 
 ### Fixes
 
@@ -31,6 +50,9 @@ News about Shokunin.new features, improvements, and fixes.
 - Choice labels that contain a comma (such as "5,700円") now display correctly.
 - Tapping a choice now highlights only the option you tapped (fixed a case where similar options were highlighted together).
 - On optional single-choice fields, tapping the selected option again now clears your answer (required fields keep their selection).
+- The report registration form keeps opening as usual after the LINE app change in October 2026.
+- When the form opens with details such as the construction name or company name already filled in, values containing "?" or "+" are no longer cut short.
+- Screens opened from LINE now still open, instead of showing an error, when part of the link is damaged.
 
 ## 2026-07
 
