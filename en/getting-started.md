@@ -16,7 +16,7 @@ Shokunin.new is an assistant service for craftsmen: send photos over LINE and ge
 2. **Register**
    Follow the guidance in the chat to register your name and profile.
 3. **Send photos to create a report**
-   Send photos taken on-site into the chat and a report is created. Check, edit, and download the PDF from the "Report List" in the menu.
+   Send photos taken on-site into the chat and a report is created. Check, edit, and download the PDF from "Photo reports" in the rich menu.
 
 ## For supervisors (admin screen)
 

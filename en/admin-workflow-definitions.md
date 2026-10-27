@@ -60,6 +60,25 @@ pulls the latest version if so. It never creates a new workflow.
   to compare. We recommend syncing once after uploading. Workflows added with "Import from
   i-Reporter" are recorded at import time, so they are covered from the start.
 
+## i-Reporter network settings
+
+Networks set between fields in the i-Reporter form (locked, narrowed choices, required, value comparison, and so on) carry over to the craftsman's form (see [Workflows](screen-workflow.html)).
+
+- When you upload an XML, the preview shows "… field links". A notice appears if the form uses network settings the web form doesn't apply (no-entry-needed mark, follower auto-fill, custom-master default search), or links that don't connect two fields.
+- On the flow canvas, networks are shown as **purple dashed lines** with labels such as "🔒 Locked", "Narrows", "Required" or "≧". Tap or click a line or its label ("ⓘ" on links without a label) to see what the link does.
+- The purple lines are read from the i-Reporter definition and are **read-only**: they can't be edited or deleted on the canvas and are not saved as part of the flow. To change them, edit the form in i-Reporter Designer.
+- **Grey dashed lines** are links the web form doesn't apply (labelled "(not applied on web)"). When the preceding field can't be filled in the web form (actions such as biometrics, QR code scanning, photos and so on), the web form doesn't apply the restriction, so the following field never ends up unusable.
+- "Hide networks" hides them ("Show networks" brings them back).
+
+## Thumbnails on the LINE work start cards
+
+When craftsmen send 「業務開始」 (work start) in the chat, workflows appear as cards with a thumbnail. The thumbnail is the first page of the i-Reporter form, and you can also see it on the workflow list and detail screens.
+
+- "**Refresh thumbnails**" at the top of the list fetches all missing or outdated thumbnails from i-Reporter at once. When some are missing, the button shows how many.
+- "Refresh thumbnail" on the detail screen re-fetches the thumbnail for that workflow only.
+- Click a thumbnail to enlarge it.
+- If a thumbnail hasn't been fetched yet, or is outdated after a form update, a placeholder image is shown instead (craftsmen never see an outdated thumbnail). Forms with no thumbnail in i-Reporter also show the placeholder.
+
 ## Good to know
 
 - Different sites and different jobs can each have their own procedure — no coding required.

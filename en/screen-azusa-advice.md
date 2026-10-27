@@ -16,12 +16,16 @@ Azusa, the AI assistant, replies with **advice for working safely** (risk-predic
 Two ways:
 
 1. **Send project information** — via a free-form message or the project info form; Azusa replies with advice, and you can continue straight into creating a report (see [Photo Reports](screen-photo-report.html)).
-2. **From the rich menu** — tap "Azusa Advice" to open the Report List, then tap "Select" on the report you want advice about.
+2. **From the rich menu** — tap "Azusa advice" (Photo reports tab) to open the report list, then tap "Select" on the report you want advice about.
    - Reports without a project name can't receive advice (their "Select" button is disabled).
    - This list shows **photo reports only**. Azusa builds its advice from project information such as the project name, client and contractor, so [Workflow](screen-workflow.html) reports are not eligible.
    - If you have no photo reports yet, Azusa replies with a message telling you so.
 
 The advice is a short message with concrete safety measures, always ending with a "safety first" sign-off.
+
+## Asking Azusa in a workflow form
+
+In workflow forms, you can also tap Azusa's icon next to a field to ask about that field (see "Asking Azusa" in [Workflows](screen-workflow.html)).
 
 ## Consultation mode
 

@@ -14,7 +14,7 @@ nav_order: 3
 A. Right after registering, your account is "pending approval". Once an administrator approves you, everything unlocks — Azusa will notify you when that happens.
 
 **Q. Which languages are supported?**
-A. Japanese and English. The rich menu is displayed in Japanese only, but your messages are recognized in either language.
+A. Japanese and English. The rich menu follows your LINE language setting: Japanese if LINE is in Japanese, English for any other language. Your messages are recognized in either language.
 
 **Q. Do I need to install an app?**
 A. No. Craftsmen only need the LINE app; supervisors use the admin screen in a browser.

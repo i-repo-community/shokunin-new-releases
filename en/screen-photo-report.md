@@ -19,7 +19,7 @@ There are two ways.
 
 1. Send Azusa your project information, either way:
    - **Free-form message** — describe the work in your own words; the AI reads out the project name and other details.
-   - **Project info form** — open it from the rich menu and enter the project name (required), project number, ordering party, reporting party, and company.
+   - **Project info form** — open it with "New report" in the rich menu (Photo reports tab) and enter the project name (required), project number, ordering party, reporting party, and company.
 2. Azusa replies with advice for working safely.
 3. Azusa then asks "Do you want to create a report with this project information?" — choose **Yes** and the report is created.
    - At this point it contains the project information only; photos come later.
@@ -27,7 +27,7 @@ There are two ways.
 
 ### Method 2: Start by sending photos
 
-1. Send site photos from the chat, or via "Select photos" in the rich menu.
+1. Send site photos from the chat, or via "Choose photos" in the rich menu.
 2. Azusa asks whether to **update** an existing report or **create a new one** — choose "create new".
 3. A report containing your photos is created. Project information can be added later.
 
@@ -37,11 +37,11 @@ There are two ways.
 
 Send photos and choose **update**; the Report List appears. Pick the report to update and the photos are **added** to it.
 
-This list shows **photo reports only**. To add photos to a [Workflow](screen-workflow.html) report, open "Report List" from the rich menu and use that report's "Add photos" button instead.
+This list shows **photo reports only**. To add photos to a [Workflow](screen-workflow.html) report, open "Workflow reports" in the rich menu (Work reports tab) and use that report's "Add photos" button instead.
 
 ### Editing from the Report List
 
-Open "Report List" from the rich menu. Each report offers these actions:
+Open "Photo reports" in the rich menu. Each report offers these actions:
 
 | Action | What it does |
 |---|---|

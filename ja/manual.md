@@ -33,6 +33,7 @@ has_children: true
 | [報告履歴](admin-report-history.html) | 報告書の履歴確認 |
 | [業務フロー定義](admin-workflow-definitions.html) | 現場の手順をフォームとして定義 |
 | [設定](admin-settings.html) | テナント設定 |
+| [現場掲示物](admin-site-notices.html) | 現場情報、許可票、成立票、緊急連絡表、写真報告 QR の作成・出力 |
 | [QR ポスター](admin-qr-poster.html) | 現場掲示用 QR ポスターの作成 |
 
 ## 共通

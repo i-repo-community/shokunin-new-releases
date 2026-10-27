@@ -11,7 +11,7 @@ nav_order: 6
 
 ## Report List
 
-Open "Report List" from the rich menu any time to see the reports you've created. The list appears in the chat as swipeable cards (a carousel).
+Open your reports from the rich menu any time: "Photo reports" (Photo reports tab) lists photo reports, and "Workflow reports" (Work reports tab) lists workflow reports. Sending "Report List" in the chat shows both together. The list appears in the chat as swipeable cards (a carousel).
 
 Each card shows:
 

@@ -28,15 +28,32 @@ nav_order: 1
 
 ## Rich menu
 
-The rich menu at the bottom of the chat gives you one-tap access to the main features.
+The rich menu at the bottom of the chat has **3 tabs** at the top. Tap a tab to switch the buttons (no message is sent to the chat).
+
+### Photo reports
 
 | Menu item | What it does |
 |---|---|
-| How to use | Opens the user guide |
-| Tutorial video | Opens a walkthrough video |
-| Project info form | Opens the construction information form |
-| Select photos | Opens the photo picker |
-| Report List | Opens your list of reports |
-| Azusa Advice | Pick a report to get advice on |
+| New report | Enter project information and create a new photo report (project info form) |
+| Choose photos | Pick site photos and send them |
+| Azusa advice | Pick a report to get advice on |
+| Photo reports | Open the list of photo reports (workflow reports are not included) |
+| Project history | See your projects and report history on My page (web) |
 
-Note: the rich menu is displayed in Japanese only, but your messages are recognized in both Japanese and English.
+### Work reports
+
+| Menu item | What it does |
+|---|---|
+| Start work | Pick a workflow and start filling it in |
+| Workflow reports | Open the list of workflow reports |
+
+### Help
+
+| Menu item | What it does |
+|---|---|
+| User guide | Open this user manual |
+| Video guide | Open the tutorial video |
+
+- Sending "Report List" in the chat shows photo reports and workflow reports together.
+- **Language:** if your LINE is set to a language other than Japanese, you see the English rich menu. If you change LINE's language, the menu switches the next time you send a message in the chat — including buttons that send one, such as "Photo reports". Switching tabs or tapping a button that opens a page doesn't trigger it. Messages are recognized in Japanese and English.
+- In companies that don't use workflows, the Work reports buttons tell you the feature isn't available.

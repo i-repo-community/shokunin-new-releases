@@ -33,6 +33,7 @@ How to use Shokunin.new.
 | [Report History](admin-report-history.html) | Reviewing report history |
 | [Workflow Definitions](admin-workflow-definitions.html) | Defining site procedures as forms |
 | [Settings](admin-settings.html) | Tenant settings |
+| [Site Notices](admin-site-notices.html) | Creating and exporting site details, permit and insurance notices, emergency contacts, and photo-report QR posters |
 | [QR Poster](admin-qr-poster.html) | Creating QR posters for the site |
 
 ## Common
