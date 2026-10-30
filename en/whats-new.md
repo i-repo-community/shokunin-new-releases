@@ -25,6 +25,7 @@ News about Shokunin.new features, improvements, and fixes.
 
 - **"Updating PDF…" while your signature is saved**: "Download PDF", email and share can't be tapped until saving finishes; then the latest PDF with your signature opens ([Download](screen-download.html)).
 - **New button order in the rich menu**: on the Photo reports tab, "Azusa advice" and "Photo reports" have swapped places. The bottom row now reads, from left to right, "Azusa advice", "Photo reports" and "Project history" ([Registration & Profile](screen-registration.html)).
+- **New "Work schedule" button in the rich menu**: the top row of the Photo reports tab now has three buttons, "New report", "Choose photos" and "Work schedule". Tap "Work schedule" and choose "Today", "Tomorrow" or "Next 7 days" to see your photo reports whose scheduled start date falls in that period ([Registration & Profile](screen-registration.html)).
 
 ## 2026-09
 

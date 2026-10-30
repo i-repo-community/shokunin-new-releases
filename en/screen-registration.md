@@ -36,6 +36,7 @@ The rich menu at the bottom of the chat has **3 tabs** at the top. Tap a tab to 
 |---|---|
 | New report | Enter project information and create a new photo report (project info form) |
 | Choose photos | Pick site photos and send them |
+| Work schedule | Choose "Today", "Tomorrow" or "Next 7 days" to list your photo reports whose scheduled start date falls in that period (workflow reports are not included) |
 | Azusa advice | Pick a report to get advice on |
 | Photo reports | Open the list of photo reports (workflow reports are not included) |
 | Project history | See your projects and report history on My page (web) |
